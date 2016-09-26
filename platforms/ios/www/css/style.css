@@ -1,0 +1,9 @@
+
+    .state-indicator {
+        z-index: 4;
+    }
+    body {
+         background: url(../images/splash-page-bgs/golf-bg.png);
+         background-size: 80px 60px;
+         background-repeat: no-repeat;
+    }
