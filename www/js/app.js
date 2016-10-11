@@ -1,5 +1,6 @@
 ﻿ons.ready(function () {
     var map;
+    var highAccuracy = ons.platform.isIOS();
     document.addEventListener("show", function (event) {
         var page = event.target;      
 
@@ -87,7 +88,7 @@
 
                 }
             });
-        }, onGPSError);
+        }, onGPSError, { maximumAge: 10000, timeout: 10000, enableHighAccuracy: highAccuracy });
     }
 
     function initList(title) {
@@ -148,7 +149,7 @@
 
                 }
             });
-        }, onGPSError);
+        }, onGPSError, { maximumAge: 10000, timeout: 10000, enableHighAccuracy: highAccuracy });
     }
 
     function initMap(position) {    
@@ -407,7 +408,7 @@
                     }
                 });
             });
-        }, onGPSError);
+        }, onGPSError, { maximumAge: 10000, timeout: 10000, enableHighAccuracy: highAccuracy });
     };
 
     window.fn.showConList = function () {
@@ -449,7 +450,7 @@
                     }
                 });
             });
-        }, onGPSError);
+        }, onGPSError, { maximumAge: 10000, timeout: 10000, enableHighAccuracy: highAccuracy });
     };
 
     window.fn.directions = function (lat, lng) {   
@@ -477,7 +478,7 @@
                     window.alert('Directions request failed due to ' + status);
                 }
             });
-        }, onGPSError);
+        }, onGPSError, { maximumAge: 10000, timeout: 10000, enableHighAccuracy: highAccuracy });
     };
 
     window.fn.setDistance = function (target) {

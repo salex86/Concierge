@@ -368,3 +368,15 @@ padding-left:10px;
 
 
 
+@media (min-width:641px)  { 
+    /*portrait tablet*/
+    .card {
+         height: 400px !important;
+    }
+}
+@media (min-width:961px) {
+    /*landscape tablet*/
+    .card {
+         height: 350px !important;
+    }
+}
