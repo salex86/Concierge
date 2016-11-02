@@ -350,7 +350,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#72964e', end
   font-size: 12px;
 }
 .avator {
-  width: 125px !important;
+  width: 120px !important;
   height: 100px !important;
   border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -358,14 +358,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#72964e', end
 
 .name {
   font-weight: 600;
-  line-height: 16px;
-  font-size: 15px;
-  margin-bottom: 6px;
+  line-height: 17px;
+  font-size: 16px;
+  margin-bottom: 4px;
 }
-
+.button{
+    white-space:unset !important;
+}
 .location {
   font-size: 14px;
-  opacity: 0.4;
   margin-bottom: 6px;
 }
 
