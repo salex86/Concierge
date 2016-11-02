@@ -32,7 +32,7 @@
             <ons-page modifier="menu-page">
                 <ons-toolbar modifier="transparent">
                 <div class="left">
-                <img src="images/lhs-logo.png" width="115" height="32" alt="" class="header-logo" />
+                <img src="img/logos/navigation-logo.png" width="115" height="32" alt="" class="header-logo" />
                 </div>
                     <div class="right">
                         <ons-toolbar-button class="menu-closeMenu" onclick="fn.close()">
@@ -86,7 +86,7 @@
         </ons-splitter-content>
     </ons-splitter>
     <ons-template id="home.html">
-        <ons-page >
+        <ons-page modifier="full_bg">
             <ons-toolbar>
                 <div class="right">
                     <ons-toolbar-button onclick="fn.open()">
@@ -98,18 +98,23 @@
                    Claymore Concierge
                 </div>
             </ons-toolbar>
-            <p style="text-align: center;">
-                <img src="images/app-icon/app-icon-180x180.png" />
-                
-            </p>   
-            <div style="text-align: center;">
-                <ons-button width="75%" alt="Submit" onclick="fn.load('password.html')">Password Log-in</ons-button>
-                <br />
-                <ons-button width="75%" alt="Submit" onclick="fn.load('concierge.html')">Search</ons-button>
-                <br />
-            </div>          
-      
-        </ons-page>
+            <section style="padding: 8px;">
+                <p style="text-align: center;">
+                    <img width="100%" src="img/logos/800w-logo.png" />
+
+                </p>
+                <p style="text-align: center;">
+                    Search For <b>Concierge Desks</b> near you
+                    </p>
+                    <br />
+                    <div style="text-align: center;">
+                        <!--<ons-button width="75%" alt="Submit" onclick="fn.load('password.html')">Password Log-in</ons-button>
+            <br />-->
+                        <ons-button width="75%" alt="Submit" modifier="large" onclick="fn.load('concierge.html');">Search</ons-button>
+                        <br />
+                    </div>
+</section>
+</ons-page>
     </ons-template>
     <ons-template id="conciergeHome.html">
         <ons-page id="conciergeHome">
@@ -125,11 +130,21 @@
                    
                 </div>
             </ons-toolbar>
+            <div id="conciergeCard" class="card">
+                <div class="card-position">
+                    
+                </div>
+            </div>
             <p style="text-align: center;">
-                <img id="conciergeHomeImage" src="img/ImageNotAvailable.jpg" />
-                <br />
+                
                 <div id="conciergeText"></div>
-                <ons-button onclick="fn.loadmap('map.html', 1)">View Recomendations</ons-button>
+                <ons-button modifier="large" onclick="fn.loadmap('map.html', 1)">Accomodation</ons-button>
+                <ons-button modifier="large" onclick="fn.loadmap('map.html', 2)">Attractions</ons-button>
+                <ons-button modifier="large" onclick="fn.loadmap('map.html', 3)">Activities</ons-button>
+                <ons-button modifier="large" onclick="fn.loadmap('map.html', 4)">Retail</ons-button>
+                <ons-button modifier="large" onclick="fn.loadmap('map.html', 5)">Travel &Aacute; Transport</ons-button>
+                <ons-button modifier="large" onclick="fn.loadmap('map.html', 6)">Food &Aacute; Drink</ons-button>
+                <ons-button modifier="large" onclick="fn.loadmap('map.html', 7)">Events &Aacute; Entertainment</ons-button>
             </p>          
            
         </ons-page>
@@ -226,7 +241,7 @@
                     Map
                 </div>
             </ons-toolbar>
-            <div class="navigation-bar">
+            <div class="navigation-bar-lower">
                 <div class="navigation-bar__center">
                     <!-- segment control -->
                     <div class="button-bar" style="width:250px; margin:8px auto 0;">
@@ -277,7 +292,7 @@
         </ons-page>
     </ons-template>
     <ons-template id="concierge.html">
-        <ons-page id="conciergePage">
+        <ons-page modifier="listingpage-bg" id="conciergePage">
             <ons-toolbar>
                 <div class="left"><ons-back-button>Back</ons-back-button></div>
                 <div class="right">
@@ -311,24 +326,22 @@
                 <!--<div id="right-panel" style="display:none"></div>-->
             </div>
             <div id="listConDiv">
-                <!--<ons-list>
+                <ons-list>
                     <ons-list-item>
                         <ons-row>
-                            <ons-col class="info-col">
-                                <div id="locationCount" class="locationCount info-num"></div>
-                                <div class="info-unit">Locations</div>
+                            <ons-col width="40px" style="text-align: center; line-height: 31px;">
+                                <ons-icon icon="fa-map"></ons-icon>
                             </ons-col>
-                            <ons-col onclick="fn.showPopover(this)" class="info-col">
-                                <div id="distanceDiv" class="info-num">25 miles</div>
-                                <div class="info-unit">Search Distance</div>
+                            <ons-col>
+                                <ons-range oninput="fn.showVal(this.value)" onchange="fn.setConDistance(this.value)" id="mapRange" max="100" style="width: 100%;" value="25"></ons-range>
                             </ons-col>
-                            <ons-col class="info-col">
-                                <div id="offerCount" class="info-num"></div>
-                                <div class="info-unit">Offers</div>
+                            <ons-col width="40px" style="text-align: center; line-height: 31px;">
+                                <ons-icon icon="fa-map"></ons-icon>
                             </ons-col>
                         </ons-row>
-                    </ons-list-item>
-                </ons-list>-->
+                        <div style="width:100%;text-align:center" id="rangeView">25 Miles</div>
+                    </ons-list-item>                    
+                </ons-list>
                 <ons-list id="entityConList">
                     <ons-list-header>Concierge Desks</ons-list-header>
                 </ons-list>
@@ -344,16 +357,19 @@
                 Select Distance
             </p>
             <ons-row>
-                <ons-col width="40px" style="text-align: center; line-height: 31px;">
-                    <ons-icon icon="fa-map"></ons-icon>
-                </ons-col>
-                <ons-col>
-                    <ons-range id="mapRange" max="100" style="width: 100%;" value="25"></ons-range>
-                </ons-col>
-                <ons-col width="40px" style="text-align: center; line-height: 31px;">
-                    <ons-icon icon="fa-map"></ons-icon>
-                </ons-col>
+                <ons-row>
+                    <ons-col width="40px" style="text-align: center; line-height: 31px;">
+                        <ons-icon icon="fa-map"></ons-icon>
+                    </ons-col>
+                    <ons-col>
+                        <ons-range oninput="fn.showVal(this.value)" onchange="fn.showVal(this.value)" id="mapRange" max="100" style="width: 100%;" value="25"></ons-range>
+                    </ons-col>
+                    <ons-col width="40px" style="text-align: center; line-height: 31px;">
+                        <ons-icon icon="fa-map"></ons-icon>
+                    </ons-col>
+                </ons-row>
             </ons-row>
+            <div id="rangeView">25 Miles</div>
             <ons-button onclick="fn.setDistance(this)">Find</ons-button>
 
         </div>

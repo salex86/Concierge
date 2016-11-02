@@ -19,7 +19,18 @@
             $("#conciergeText").html(page.data.text);
             if (page.data.image != null) {
                 $("#conciergeHomeImage").html(page.data.image);
-            }            
+            }
+            //var image = ""
+
+            if (page.data.image == "" || page.data.image == null) {
+                image = "img/ImageNotAvailable.jpg";
+            } else {
+                image = page.data.image;
+            }
+            $("#conciergeCard").css("background", "linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 100%),url(" + image + ") no-repeat center center #eae7de");
+            $("#conciergeCard").css("background-repeat", "no-repeat");
+            $("#conciergeCard").css("background-size", "100% 100%");
+            $("#conciergeCard").css("background-position", "top center");
         } else if (event.target.id == 'entityHome') {
             //initConList(page.data.entityId);
             
@@ -45,21 +56,21 @@
                 data: {
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
+                    distance: $("#mapRange").val()
                 },
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', make_base_auth("jamesk", "hendrie"));
                 },
-                success: function (data) {                 
-
+                success: function (data) {   
                     var count = 0;
                     $("#entityProgress").hide();
                     $.each(data, function (i, obj) {
                         if (obj.concierge_is_public == 1) {
-                            var iconURL = "images/heart40.png";
+                            var iconURL = "img/map-icons/unlocked-desk-30w.png";
                             var linkOnClick = "fn.loadConciergeHome('conciergeHome.html'," + obj.id + ", '" + obj.entity_name + "', '"+obj.profile_image_url+"', '"+obj.concierge_text+"')";
                             var text = "Enter";
                         } else {
-                            var iconURL = "images/conv40.png";
+                            var iconURL = "img/map-icons/locked-desk-30w.png";
                             var linkOnClick = 'fn.showConLogin(' + obj.id + ')';
                             var text = "Log in";
                         }
@@ -73,11 +84,11 @@
                         }
 
                         var onsItem = document.createElement('ons-list-item');
-                        onsItem.setAttribute('modifier', "chevron");
+                        //onsItem.setAttribute('modifier', "chevron");
                         onsItem.setAttribute('tappable', "");
                         onsItem.setAttribute('onclick', linkOnClick);
-                        onsItem.innerHTML = '<div class="left" style="width:80px"><img src="' + image + '" class="avator"></img></div><div ><div class="name">' + obj.entity_name
-                            + '</div><span class="list__item__subtitle"><i class="fa fa-map-marker"></i> ' + obj.address + ' , '+obj.town+ ' </br> ' + Math.round(obj.distance * 100) / 100 + ' miles</div>';
+                        onsItem.innerHTML = '<div class="left" style="width:130px"><img src="' + image + '" class="avator"></img></div><div class="right" style="width:35px"><img src="' + iconURL + '" class=""></img></div><div vertical-align="top"><div class="name">' + obj.entity_name
+                            + '</div><span class="list__item__subtitle"><div class="location">' + obj.town + ', ' + obj.county + ' </div></br><i class="fa fa-map-marker"></i> ' + Math.round(obj.distance * 100) / 100 + ' miles</div>';
                         document.getElementById('entityConList').appendChild(onsItem);
                         //addCustomMarker(obj.id, page.data.mapType, obj.entity_name, obj.latitude, obj.longitude);
                     });
@@ -135,8 +146,8 @@
                         onsItem.setAttribute('modifier', "chevron");
                         onsItem.setAttribute('tappable', "");
                         onsItem.setAttribute('onclick', "fn.loadDetail('entity.html'," + obj.id + ")");
-                        onsItem.innerHTML = '<div class="left" style="width:80px"><img src="' + image + '" class="avator"></img></div><div ><div class="name">' + obj.entity_name
-                            + '</div><span class="list__item__subtitle"><i class="fa fa-map-marker"></i> '+obj.address+' </br> ' + Math.round(obj.distance * 100) / 100 + ' miles</div>';
+                        onsItem.innerHTML = '<div class="left" style="width:130px"><img src="' + image + '" class="avator"></img></div><div class="right" style="width:30px">T</div><div vertical-align="top"><div class="name">' + obj.entity_name
+                            + '</div><span class="list__item__subtitle"><div class="location">' + obj.address3 + ',' + obj.town + '</div></br><i class="fa fa-map-marker"></i> ' + Math.round(obj.distance * 100) / 100 + ' miles</div>';
                         document.getElementById('entity_list').appendChild(onsItem);
                         //addCustomMarker(obj.id, page.data.mapType, obj.entity_name, obj.latitude, obj.longitude);
                         $("#locationCount").html(i + 1);
@@ -229,11 +240,11 @@
 
     function addConCustomMarker(obj) {
         if (obj.concierge_is_public == 1) {
-            var iconURL = "images/heart40.png";
+            var iconURL = "img/map-icons/unlocked-desk-40w.png";
             var linkOnClick = "fn.loadConciergeHome('conciergeHome.html'," + obj.id + ", '" + obj.entity_name + "', '" + obj.profile_image_url + "','" + obj.concierge_text + "')";
             var text = "Enter";
         } else {
-            var iconURL = "images/conv40.png";
+            var iconURL = "img/map-icons/locked-desk-40w.png";
             var linkOnClick = 'fn.showConLogin(' + obj.id + ')';
             var text = "Log in";
         }        
@@ -359,6 +370,10 @@
       .show(target);
     };
 
+    window.fn.showVal = function (target) {
+        $("#rangeView").html(target + " Miles");
+    };
+
     window.fn.hidePopover = function () {
         document
           .getElementById('popover')
@@ -431,7 +446,8 @@
                     crossOrigin: true,
                     data: {
                         latitude: position.coords.latitude,
-                        longitude: position.coords.longitude
+                        longitude: position.coords.longitude,
+                        distance: $("#mapRange").val()
                     },
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader('Authorization', make_base_auth("jamesk", "hendrie"));
@@ -480,7 +496,9 @@
             });
         }, onGPSError, { maximumAge: 10000, timeout: 10000, enableHighAccuracy: highAccuracy });
     };
-
+    window.fn.setConDistance = function (target) {
+        initConList(72);
+    }
     window.fn.setDistance = function (target) {
         fn.hidePopover();
 
@@ -519,8 +537,8 @@
                             onsItem.setAttribute('modifier', "chevron");
                             onsItem.setAttribute('tappable', "");
                             onsItem.setAttribute('onclick', "fn.loadDetail('entity.html'," + obj.id + ")");
-                            onsItem.innerHTML = '<div class="left" style="width:80px"><img src="' + image + '" class="avator"></img></div><div ><div class="name">' + obj.entity_name
-                            + '</div><span class="list__item__subtitle"><i class="fa fa-map-marker"></i> ' + obj.address + ' </br> ' + Math.round(obj.distance * 100) / 100 + ' miles</div>';
+                            onsItem.innerHTML = '<div class="left" style="width:130px"><img src="' + image + '" class="avator"></img></div><div class="right" style="width:30px">T</div><div vertical-align="top" ><div class="name">' + obj.entity_name
+                            + '</div><span class="list__item__subtitle"><div class="location">' + obj.address + ',' + obj.town + '</div> </br><i class="fa fa-map-marker"></i> ' + Math.round(obj.distance * 100) / 100 + ' miles</div>';
                             document.getElementById('entity_list').appendChild(onsItem);
                             //addCustomMarker(obj.id, window.mapType, obj.entity_name, obj.latitude, obj.longitude);
                             $("#locationCount").html(i + 1);
