@@ -49,16 +49,9 @@
   <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2"/>
   <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0"/>
   <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1"/>
-  <icon src="www/scotland-icon.png" />
-  <icon platform="android" qualifier="ldpi" src="www/res/icon/ios/icons-57x57.png" />
-  <icon platform="android" qualifier="mdpi" src="www/res/icon/ios/icons-72x72.png" />
-  <icon platform="android" qualifier="hdpi" src="www/res/icon/ios/icons-114x114.png" />
-  <icon platform="android" qualifier="xhdpi" src="www/res/icon/ios/app-icon-144x144.png" />
-  <icon src="www/res/icon/ios/app-icon-144x144.png" platform="android" qualifier="xxhdpi" />
-  <icon src="www/res/icon/ios/app-icon-144x144.png" platform="android" qualifier="fr-xxhdpi" />
   
    <icon src="icon.png" />
-  <splash src="splash.png" />
+  <splash src="splash.jpg" />
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/ldpi.png" />
         <icon density="mdpi" src="www/res/icon/android/mdpi.png" />
