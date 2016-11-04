@@ -102,19 +102,23 @@
         }, onGPSError, { maximumAge: 10000, timeout: 10000, enableHighAccuracy: highAccuracy });
     }
 
-    function initList(title) {
+    function initList(title,color) {
         if ($("#mapRadio").is(':checked') === true) {
             $("#listRadio").prop('checked', true);
             fn.showList();
-        }        
-
-        $("#entity_list").html("<ons-list-header>Recommendations</ons-list-header>");
+        }
+        
+        $("#entity_list").html("<ons-list-header>"+title+" - Recommendations</ons-list-header>");
         $("#mapRange").val(25);
         $("#distanceDiv").html('25 miles');
         $("#map-title").html(title);
+       
+        
         var entityId = localStorage.getItem('conciergeId');
         navigator.geolocation.getCurrentPosition(function (position) {
+            $(".listNav").addClass("navigation-bar-" + color + "");
             $("#entityProgress").show();
+            
             $.ajax({
                 url: 'http://stage.theclaymoreproject.com/api/partner/' + entityId + '?action=app_search',
                 type: 'post',
@@ -193,32 +197,133 @@
                     xhr.setRequestHeader('Authorization', make_base_auth("scotlands19thhole", "3ctbb4512"));
                 },
                 success: function (data) {
-                   // $("#detailCard").css("background-image", "url(" + data.profile_image_url + ") no-repeat");
+                    //layout changes tablet
+                    if (ons.platform.isIPad() || ons.platform.isAndroidTablet()) {
+                        var shortText = data.entity_name;
+                        var headerText = data.entity_name + ', ' + data.town.replace(/^,|,$/g, '');
+                    } else {
+                        var shortText = truncate(data.entity_name);
+                        var headerText = truncate(data.entity_name);
+                    }
+
+                    // $("#detailCard").css("background-image", "url(" + data.profile_image_url + ") no-repeat");
                     //var item = document.getElementById('detailName');
-                    $("#detail-title").html(data.entity_name);
+                    $('#moreDetail').show();
 
-                    $("#detailName").text(data.entity_name);
-                    $("#detailTop").html( data.address + ' ' + data.address2 +'<br>'+ data.address3);
+                    $("#detail-title").html(headerText);
 
-                    $("#detailDesc").html(data.business_overview);
-                    $("#phoneIcon").click(function() {
+                    $("#detailName").text(shortText);
+                    $("#detailTop").html(data.address + ' ' + data.address2 + '<br>' + data.address3);
+
+                    $("#detailDesc").html(data.first_paragraph + "</br>" + data.business_overview);
+
+                    $("#directionsIcon").click(function () {
+
+                        var geocoords = parseFloat(data.latitude) + ',' + parseFloat(data.longitude);
+
+                        if (ons.platform.isIOS()) {
+                            window.open('maps://?q=' + geocoords, '_system');
+                        }
+                        else {
+                            var label = encodeURI(data.entity_name); // encode the label!
+                            window.open('geo:0,0?q=' + geocoords + '(' + label + ')', '_system');
+                        }
+
+                    });
+
+                    $("#phoneIcon").click(function () {
                         window.open('tel:' + data.telephone.replace(" ", ""), '_self', "location=yes");
                     });
                     $("#websiteIcon").click(function () {
-                        window.open('http://'+data.url, '_system', "location=yes");
+                        window.open('http://' + data.url, '_system', "location=yes");
                     });
-                    $("#bookingIcon").click(function () {
-                        window.open( data.booking_url, '_system', "location=yes");
-                    });
+
+                    if (data.booking_url == null || data.booking_url == "") {
+                        $("#bookingDiv").hide();
+                    } else {
+                        $("#bookingIcon").click(function () {
+                            window.open(data.booking_url, '_system', "location=yes");
+                        });
+                    }
+
                     $("#emailIcon").click(function () {
                         window.open('mailto:' + data.email, '_system');
                     });
+
                     var image = ""
                     if (data.profile_image_url == "" || data.profile_image_url == null) {
                         image = "img/no-image-available.png";
                     } else {
                         image = data.profile_image_url;
                     }
+
+                    // social media stuff
+                    if (data.facebook == null || data.facebook == "") {
+                        $("#facebookIcon").hide();
+                    } else {
+                        $("#facebookIcon").show();
+                        $("#facebookIcon").click(function () {
+                            window.open(data.facebook, '_system', "location=yes");
+                        });
+                    }
+                    if (data.twitter == null || data.twitter == "") {
+                        $("#twitterIcon").hide();
+                    } else {
+                        $("#twitterIcon").show();
+                        $("#twitterIcon").click(function () {
+                            window.open(data.twitter, '_system', "location=yes");
+                        });
+                    }
+                    if (data.linkedin == null || data.linkedin == "") {
+                        $("#linkedinIcon").hide();
+                    } else {
+                        $("#linkedinIcon").show();
+                        $("#linkedinIcon").click(function () {
+                            window.open(data.linkedin, '_system', "location=yes");
+                        });
+                    }
+                    if (data.googleplus == null || data.googleplus == "") {
+                        $("#googleplusIcon").hide();
+                    } else {
+                        $("#googleplusIcon").show();
+                        $("#googleplusIcon").click(function () {
+                            window.open(data.googleplus, '_system', "location=yes");
+                        });
+                    }
+                    if (data.blogger == null || data.blogger == "") {
+                        $("#bloggerIcon").hide();
+                    } else {
+                        $("#bloggerIcon").show();
+                        $("#bloggerIcon").click(function () {
+                            window.open(data.blogger, '_system', "location=yes");
+                        });
+                    }
+                    if (data.youtube == null || data.youtube == "") {
+                        $("#youtubeIcon").hide();
+                    } else {
+                        $("#youtubeIcon").show();
+                        $("#youtubeIcon").click(function () {
+                            window.open(data.youtube, '_system', "location=yes");
+                        });
+                    }
+                    if (data.pintrest == null || data.pintrest == "") {
+                        $("#pintrestIcon").hide();
+                    } else {
+                        $("#pintrestIcon").show();
+                        $("#pintrestIcon").click(function () {
+                            window.open(data.pintrest, '_system', "location=yes");
+                        });
+                    }
+                    if (data.tripadvisor == null || data.tripadvisor == "") {
+                        $("#tripadvisorIcon").hide();
+                    } else {
+                        $("#tripadvisorIcon").show();
+                        $("#tripadvisorIcon").click(function () {
+                            window.open(data.tripadvisor, '_system', "location=yes");
+                        });
+                    }
+                    //
+
                     $("#detailCard").css("background", "linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 100%),url(" + image + ") no-repeat center center #eae7de");
                     $("#detailCard").css("background-repeat", "no-repeat");
                     $("#detailCard").css("background-size", "100% 85%");
@@ -605,28 +710,36 @@
         var menu = document.getElementById('menu');
         var navi = document.getElementById('navi');
         var title = "";
-        //if (mapType == 1) {
-        //    title = 'Play';
-        //}
-        //if (mapType == 2) {
-        //    title = 'Stay';
-        //}
-        //if (mapType == 3) {
-        //    title = 'Eat';
-        //}
-        //if (mapType == 4) {
-        //    title = 'Drink';
-        //}
-        //if (mapType == 5) {
-        //    title = 'Enjoy';
-        //}
-        //if (mapType == 6) {
-        //    title = 'Travel';
-        //}
+        var color;
+        if (mapType == 1) {
+            title = 'Accomodation';
+            color = "red";
+        }
+        if (mapType == 2) {
+            title = 'Attractions';
+            color = "orange";
+        }
+        if (mapType == 3) {
+            title = 'Activities';
+            color = "yellow";
+        }
+        if (mapType == 4) {
+            title = 'Retail';
+            color = "green";
+        }
+        if (mapType == 5) {
+            title = 'Travel & Transport';
+            color = "blue";
+        }
+        if (mapType == 6) {
+            title = 'Food & Drink';
+            color = "indigo";
+        }
+        if (mapType == 7) {
+            title = 'Events & Entertainment';
+            color = "violet";
+        }
             
-        title = "Recommendations";
-
-
         window.mapType = mapType;
         menu.close();
         navi.bringPageTop(page, {
@@ -635,12 +748,8 @@
                 mapType: mapType,
                 title: title
             }
-        }).then(initList(title));
-
-        //bringPageTop(item, [options]);
-
-        //content.load(page)
-        //  .then(menu.close.bind(menu));        
+        }).then(initList(title,color));
+      
     };
 
     window.fn.showDialog = function (id) {

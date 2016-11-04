@@ -126,7 +126,7 @@
                     </ons-toolbar-button>
                 </div>
 
-                <div id="entityHomeTitle" class="center">
+                <div id="entityHomeTitle" class="center"> 
                    
                 </div>
             </ons-toolbar>
@@ -138,12 +138,12 @@
             <p style="text-align: center; padding:8px">                
                 <!--<div id="conciergeText"></div>-->
                 <ons-button style="background-color:red" modifier="large" onclick="fn.loadmap('map.html', 1)">Accomodation <span style="float:right"><img width="25px" src="img/category-icons/accommodation.png" /></span> </ons-button>
-                <ons-button style="background-color:yellow" modifier="large" onclick="fn.loadmap('map.html', 2)">Attractions <span style="float:right"><img width="25px" src="img/category-icons/attractions.png" /></span > </ons-button>
-                <ons-button modifier="large" onclick="fn.loadmap('map.html', 3)">Activities <span style="float:right"><img width="25px" src="img/category-icons/activities.png" /></span> </ons-button>
-                <ons-button modifier="large" onclick="fn.loadmap('map.html', 4)">Retail <span style="float:right"><img width="25px" src="img/category-icons/retail.png" /></span> </ons-button>
-                <ons-button modifier="large" onclick="fn.loadmap('map.html', 5)">Travel &amp; Transport <span style="float:right"><img width="25px" src="img/category-icons/travel_and_transport.png" /></span> </ons-button>
-                <ons-button modifier="large" onclick="fn.loadmap('map.html', 6)">Food &amp; Drink <span style="float:right"><img width="25px" src="img/category-icons/food_and_drink.png" /></span> </ons-button>
-                <ons-button modifier="large" onclick="fn.loadmap('map.html', 7)">Events &amp; Entertainment <span style="float:right"><img width="25px" src="img/category-icons/events_and_entertainment.png" /></span> </ons-button>
+                <ons-button style="background-color:orange" modifier="large" onclick="fn.loadmap('map.html', 2)">Attractions <span style="float:right"><img width="25px" src="img/category-icons/attractions.png" /></span > </ons-button>
+                <ons-button style="background-color:yellow" modifier="large" onclick="fn.loadmap('map.html', 3)">Activities <span style="float:right"><img width="25px" src="img/category-icons/activities.png" /></span> </ons-button>
+                <ons-button style="background-color:green" modifier="large" onclick="fn.loadmap('map.html', 4)">Retail <span style="float:right"><img width="25px" src="img/category-icons/retail.png" /></span> </ons-button>
+                <ons-button style="background-color:blue" modifier="large" onclick="fn.loadmap('map.html', 5)">Travel &amp; Transport <span style="float:right"><img width="25px" src="img/category-icons/travel_and_transport.png" /></span> </ons-button>
+                <ons-button style="background-color:indigo" modifier="large" onclick="fn.loadmap('map.html', 6)">Food &amp; Drink <span style="float:right"><img width="25px" src="img/category-icons/food_and_drink.png" /></span> </ons-button>
+                <ons-button style="background-color:violet"modifier="large" onclick="fn.loadmap('map.html', 7)">Events &amp; Entertainment <span style="float:right"><img width="25px" src="img/category-icons/events_and_entertainment.png" /></span> </ons-button>
             </p>          
            
         </ons-page>
@@ -191,44 +191,85 @@
                     <ons-row class="action">
                         <!--<a href="tel:01418821261">call this number</a>-->
                         <!--<a onclick='window.open("http://link.com","_system", "location=yes")' href='javascript:void(0)'>link</a>
-                        <a href="mailto:abc@gmail.com" data-rel='external'> email </a>-->
-                            <ons-col id="phoneIcon" class="action-col">
-                                <div class="action-icon"><ons-icon icon="fa-mobile"></ons-icon></div>
-                                <div class="action-label">Phone</div>
-                            </ons-col>
-                            <ons-col id="websiteIcon" class="action-col">
-                                <div class="action-icon"><ons-icon icon="fa-desktop"></ons-icon></div>
-                                <div class="action-label">Website</div>
-                            </ons-col>
+                <a href="mailto:abc@gmail.com" data-rel='external'> email </a>-->
+                        <ons-col id="phoneIcon" class="action-col">
+                            <div class="action-icon"><ons-icon icon="fa-mobile"></ons-icon></div>
+                            <div class="action-label">Phone</div>
+                        </ons-col>
+                        <ons-col id="websiteIcon" class="action-col">
+                            <div class="action-icon"><ons-icon icon="fa-desktop"></ons-icon></div>
+                            <div class="action-label">Website</div>
+                        </ons-col>
 
-                            <ons-col class="action-col">
-                                <div id="emailIcon" class="action-icon"><ons-icon icon="fa-envelope"></ons-icon></div>
-                                <div class="action-label">Email</div>
-                            </ons-col>
+                        <ons-col class="action-col">
+                            <div id="emailIcon" class="action-icon"><ons-icon icon="fa-envelope"></ons-icon></div>
+                            <div class="action-label">Email</div>
+                        </ons-col>
 
-                            <ons-col class="action-col">
-                                <div id="bookingIcon" class="action-icon"><ons-icon icon="fa-credit-card"></ons-icon></div>
-                                <div class="action-label">Book</div>
-                            </ons-col>
+                        <ons-col id="bookingDiv" class="action-col">
+                            <div id="bookingIcon" class="action-icon"><ons-icon icon="fa-credit-card"></ons-icon></div>
+                            <div class="action-label">Book</div>
+                        </ons-col>
+                        <ons-col class="action-col">
+                            <div id="directionsIcon" class="action-icon"><ons-icon icon="fa-map"></ons-icon></div>
+                            <div class="action-label">Directions</div>
 
-</ons-row>
+                        </ons-col>
+
+
+                    </ons-row>
                 </ons-list-item>
             </ons-list>
 
-            <!--<ons-list style="margin-top: 12px;">
-                <ons-list-item id="detailTelephone" tappable modifier="chevron">
-                    
+
+            <ons-list id="detailDesc" style="padding:0 15px 15px 15px;height:250px;overflow:hidden"></ons-list>
+            <ons-button id="moreDetail" onclick="fn.expandDetail();$('#moreDetail').hide(); " modifier="large--quiet">Show More</ons-button>
+
+            <ons-list style="border-top: none">
+                <ons-list-item style="line-height: 1; padding: 0;">
+                    <ons-row class="action">
+
+                        <ons-col id="facebookIcon" class="action-col">
+                            <div class="action-icon"><ons-icon icon="fa-facebook"></ons-icon></div>
+                            <div class="action-label">Facebook</div>
+                        </ons-col>
+                        <ons-col id="twitterIcon" class="action-col">
+                            <div class="action-icon"><ons-icon icon="fa-twitter"></ons-icon></div>
+                            <div class="action-label">Twitter</div>
+                        </ons-col>
+
+                        <ons-col id="linkedinIcon" class="action-col">
+                            <div class="action-icon"><ons-icon icon="fa-linkedin"></ons-icon></div>
+                            <div class="action-label">LinkedIn</div>
+                        </ons-col>
+                        <ons-col id="bloggerIcon" class="action-col">
+                            <div class="action-icon"><ons-icon icon="fa-google"></ons-icon></div>
+                            <div class="action-label">Blogger</div>
+                        </ons-col>
+                        <ons-col id="youtubeIcon" class="action-col">
+                            <div class="action-icon"><ons-icon icon="fa-youtube"></ons-icon></div>
+                            <div class="action-label">YouTube</div>
+                        </ons-col>
+                        <ons-col id="googleplusIcon" class="action-col">
+                            <div class="action-icon"><ons-icon icon="fa-google-plus"></ons-icon></div>
+                            <div class="action-label">Google+</div>
+                        </ons-col>
+                        <ons-col id="pintrestIcon" class="action-col">
+                            <div class="action-icon"><ons-icon icon="fa-pinterest"></ons-icon></div>
+                            <div class="action-label">Pinterest</div>
+                        </ons-col>
+                        <ons-col id="tripadvisorIcon" class="action-col">
+                            <div class="action-icon"><ons-icon icon="fa-tripadvisor"></ons-icon></div>
+                            <div class="action-label">Trip Advisor</div>
+                        </ons-col>
+                    </ons-row>
                 </ons-list-item>
-            </ons-list>-->
-          <!--  <ons-list>
-                <ons-list-header>Business Desc</ons-list-header>
-            </ons-list> -->
-            <ons-list id="detailDesc" style="padding:25px;max-height:250px;overflow:auto;">
+            </ons-list>
 </ons-page>
     </ons-template>
     <ons-template id="map.html">
         <ons-page id="mapPage" >
-            <ons-toolbar>
+            <ons-toolbar class="listNav">
                 <div class="left"><ons-back-button>Back</ons-back-button></div>
                 <div class="right">
                     <ons-toolbar-button onclick="fn.open()">
@@ -240,7 +281,7 @@
                     Map
                 </div>
             </ons-toolbar>
-            <div class="navigation-bar-lower">
+            <div class="navigation-bar listNav">
                 <div class="navigation-bar__center">
                     <!-- segment control -->
                     <div class="button-bar" style="width:250px; margin:8px auto 0;">
@@ -281,7 +322,7 @@
                 </ons-list>
                 
                 <ons-list id="entity_list">
-                    <ons-list-header>Found Locations</ons-list-header>
+                    <ons-list-header>Recommendations</ons-list-header>
                 </ons-list>
                 <div style="text-align: center;">
                     <ons-progress-circular style="margin-top:20px;padding:10px;text-align:center;display:none" id="entityProgress" indeterminate></ons-progress-circular>
