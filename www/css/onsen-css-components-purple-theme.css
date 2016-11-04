@@ -750,7 +750,7 @@ ons-range[disabled] .range {
   }
 }
 .navigation-bar__bg {
-  background: #2b2e83;
+  background: #72964e;
 }
 .navigation-bar__item,
 .navigation-bar__left,
@@ -1049,7 +1049,7 @@ ons-range[disabled] .range {
   -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.3);
   box-shadow: 0 1px 5px rgba(0,0,0,0.3);
   padding: 0;
-  background-color: #2b2e83;
+  background-color: #72964e;
   -webkit-background-size: 0;
   background-size: 0;
 }
