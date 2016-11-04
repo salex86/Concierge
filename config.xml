@@ -76,7 +76,6 @@
   <icon platform="blackberry" src="www/res/icon/blackberry/icon-80.png" />
   <icon platform="blackberry" state="hover" src="www/res/icon/blackberry/icon-80.png" />
 
-  <platform name="ios">
     <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
     <icon height="114" platform="ios" src="www/res/icon/ios/icon@2x.png" width="114" />
     <icon height="40" platform="ios" src="www/res/icon/ios/icon-40.png" width="40" />
@@ -103,7 +102,7 @@
     <splash height="1024" platform="ios" src="www/res/screen/ios/w768xh1024.jpg" width="768" />
     <splash height="960" platform="ios" src="www/res/screen/ios/w640xh960.jpg" width="640" />
     <splash height="480" platform="ios" src="www/res/screen/ios/w320xh480.jpg" width="320" />
-  </platform>
+
   
   <icon platform="webos" src="www/res/icon/webos/icon-64.png" />
   <icon platform="winphone" src="www/res/icon/windows-phone/icon-48.png" />
