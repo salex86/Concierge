@@ -707,7 +707,12 @@ ons-range[disabled] .range {
   margin: 0;
   font: inherit;
   color: inherit;
-  background: #2b2e83;
+  background: #72964e;
+  /*background: -moz-linear-gradient(top,  #72964e 0%, #466f1e 100%);*/
+
+/*background: -webkit-linear-gradient(top,  #72964e 0%,#466f1e 100%);*/
+
+
   border: none;
   line-height: normal;
   cursor: default;
