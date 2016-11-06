@@ -92,19 +92,19 @@
     <icon height="29" platform="ios" src="www/res/icon/ios/icon-small.png" width="29" />
     <icon height="58" platform="ios" src="www/res/icon/ios/icon-small@2x.png" width="58" />
     <icon height="87" platform="ios" src="www/res/icon/ios/icon-small@3x.png" width="87" />
-  <splash platform="ios" height="480" src="www/res/screen/ios/loading-screen-h1136xw640.png" width="320" />
-  <splash platform="ios" height="320" src="www/res/screen/ios/screen-iphone-landscape.png" width="480" />
-  <splash platform="ios" height="960" src="www/res/screen/ios/loading-screen-h1136xw640.png" width="640" />
-  <splash platform="ios" height="1136" src="www/res/screen/ios/loading-screen-h1136xw640.png" width="640" />
-  <splash platform="ios" height="640" src="www/res/screen/ios/lucam-splash-landscape.png" width="1136" />
-  <splash platform="ios" height="1024" src="www/res/screen/ios/loading-screen-h1024xw768.png" width="768" />
-  <splash platform="ios" height="768" src="www/res/screen/ios/lucam-splash-landscape.png" width="1024" />
-  <splash height="1334" platform="ios" src="www/res/screen/ios/loading-screen-h1136xw640.png" width="750" />
-  <splash height="750" platform="ios" src="www/res/screen/ios/lucam-splash-landscape.png" width="1334" />
-  <splash height="2208" platform="ios" src="www/res/screen/ios/loading-screen-h2208xw1242.png" width="1242" />
-  <splash height="1242" platform="ios" src="www/res/screen/ios/loading-screen-w2208xh1242.png" width="2208" />
-  <splash src="www/res/screen/ios/loading-screen-h2048xw1536.png" platform="ios" width="1536" height="2048" />
-  <splash src="www/res/screen/ios/loading-screen-w2048xh1536.png" platform="ios" width="2048" height="1536" />
+  <splash platform="ios" height="480" src="www/res/screen/ios/w320xh480.jpg" width="320" />
+  <splash platform="ios" height="320" src="www/res/screen/ios/w480xh320.jpg" width="480" />
+  <splash platform="ios" height="960" src="www/res/screen/ios/w640xh960.jpg" width="640" />
+  <splash platform="ios" height="1136" src="www/res/screen/ios/w640xh1136.jpg" width="640" />
+  <splash platform="ios" height="640" src="www/res/screen/ios/w1136xh640.jpg" width="1136" />
+  <splash platform="ios" height="1024" src="www/res/screen/ios/w768xh1024.jpg" width="768" />
+  <splash platform="ios" height="768" src="www/res/screen/ios/w1024xh768.jpg" width="1024" />
+  <splash height="1334" platform="ios" src="www/res/screen/ios/w750xh1334.jpg" width="750" />
+  <splash height="750" platform="ios" src="www/res/screen/ios/w1334xh750.jpg" width="1334" />
+  <splash height="2208" platform="ios" src="www/res/screen/ios/w1242xh2208.jpg" width="1242" />
+  <splash height="1242" platform="ios" src="www/res/screen/ios/w2208xh1242.jpg" width="2208" />
+  <splash src="www/res/screen/ios/w1536xh2048.jpg" platform="ios" width="1536" height="2048" />
+  <splash src="www/res/screen/ios/w2048xh1536.jpg" platform="ios" width="2048" height="1536" />
 
   
   <icon platform="webos" src="www/res/icon/webos/icon-64.png" />

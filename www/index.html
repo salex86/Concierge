@@ -110,8 +110,8 @@
             </div>
             <p style="text-align: center; padding:8px">                
                 <!--<div id="conciergeText"></div>-->
-                <ons-button style="background-color:red" modifier="large" onclick="fn.loadmap('map.html', 1)">Accomodation <span style="float:right"><img width="25px" src="img/category-icons/accommodation.png" /></span> </ons-button>
-                <ons-button style="background-color:orange" modifier="large" onclick="fn.loadmap('map.html', 2)">Attractions <span style="float:right"><img width="25px" src="img/category-icons/attractions.png" /></span > </ons-button>
+                <ons-button style="background-color:red" modifier="large" onclick="fn.loadmap('map.html', 2)">Accomodation <span style="float:right"><img width="25px" src="img/category-icons/accommodation.png" /></span> </ons-button>
+                <ons-button style="background-color:orange" modifier="large" onclick="fn.loadmap('map.html', 1)">Attractions <span style="float:right"><img width="25px" src="img/category-icons/attractions.png" /></span > </ons-button>
                 <ons-button style="background-color:yellow" modifier="large" onclick="fn.loadmap('map.html', 3)">Activities <span style="float:right"><img width="25px" src="img/category-icons/activities.png" /></span> </ons-button>
                 <ons-button style="background-color:green" modifier="large" onclick="fn.loadmap('map.html', 4)">Retail <span style="float:right"><img width="25px" src="img/category-icons/retail.png" /></span> </ons-button>
                 <ons-button style="background-color:blue" modifier="large" onclick="fn.loadmap('map.html', 5)">Travel &amp; Transport <span style="float:right"><img width="25px" src="img/category-icons/travel_and_transport.png" /></span> </ons-button>
@@ -346,7 +346,7 @@
                                 <ons-icon icon="fa-map"></ons-icon>
                             </ons-col>
                             <ons-col>
-                                <ons-range oninput="fn.showVal(this.value)" onchange="fn.setConDistance(this.value)" id="mapRange" max="100" style="width: 100%;" value="25"></ons-range>
+                                <ons-range oninput="fn.showConVal(this.value)" onchange="fn.setConDistance(this.value)" id="mapRange" max="100" style="width: 100%;" value="25"></ons-range>
                             </ons-col>
                             <ons-col width="40px" style="text-align: center; line-height: 31px;">
                                 <ons-icon icon="fa-map"></ons-icon>
@@ -359,7 +359,7 @@
                     <ons-list-header>Concierge Desks</ons-list-header>
                 </ons-list>
                 <div style="text-align: center;">
-                    <ons-progress-circular style="margin-top:20px;padding:10px;text-align:center;display:none" id="entityProgress" indeterminate></ons-progress-circular>
+                    <ons-progress-circular style="margin-top:20px;padding:10px;text-align:center;display:none" id="entityConProgress" indeterminate></ons-progress-circular>
                 </div>
             </div>
         </ons-page>
@@ -375,14 +375,14 @@
                         <ons-icon icon="fa-map"></ons-icon>
                     </ons-col>
                     <ons-col>
-                        <ons-range oninput="fn.showVal(this.value)" onchange="fn.showVal(this.value)" id="mapRange" max="100" style="width: 100%;" value="25"></ons-range>
+                        <ons-range oninput="fn.showVal(this.value)" onchange="fn.showVal(this.value)" id="mapRangeEntity" max="100" style="width: 100%;" value="25"></ons-range>
                     </ons-col>
                     <ons-col width="40px" style="text-align: center; line-height: 31px;">
                         <ons-icon icon="fa-map"></ons-icon>
                     </ons-col>
                 </ons-row>
             </ons-row>
-            <div id="rangeView">25 Miles</div>
+            <div class="rangeView">25 Miles</div>
             <ons-button onclick="fn.setDistance(this)">Find</ons-button>
 
         </div>

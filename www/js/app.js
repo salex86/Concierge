@@ -47,7 +47,7 @@
        
         $("#mapConTitle").html(title);
         navigator.geolocation.getCurrentPosition(function (position) {
-            $("#entityProgress").show();
+            $("#entityConProgress").show();
             $.ajax({
                 url: 'http://stage.theclaymoreproject.com/api/partner/1238?action=concierge_search',
                 type: 'post',
@@ -63,7 +63,7 @@
                 },
                 success: function (data) {   
                     var count = 0;
-                    $("#entityProgress").hide();
+                    $("#entityConProgress").hide();
                     $.each(data, function (i, obj) {
                         if (obj.concierge_is_public == 1) {
                             var iconURL = "img/map-icons/unlocked-desk-30w.png";
@@ -109,7 +109,7 @@
         }
         
         $("#entity_list").html("<ons-list-header>"+title+" - Recommendations</ons-list-header>");
-        $("#mapRange").val(25);
+        $("#mapRangeEntity").val(25);
         $("#distanceDiv").html('25 miles');
         $("#map-title").html(title);
        
@@ -127,7 +127,7 @@
                 data: {
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
-                    distance: $("#mapRange").val(),
+                    distance: $("#mapRangeEntity").val(),
                     type: 1,
                     entityType: window.mapType
                 },
@@ -150,7 +150,7 @@
                         onsItem.setAttribute('modifier', "chevron");
                         onsItem.setAttribute('tappable', "");
                         onsItem.setAttribute('onclick', "fn.loadDetail('entity.html'," + obj.id + ")");
-                        onsItem.innerHTML = '<div class="left" style="width:130px"><img src="' + image + '" class="avator"></img></div><div class="right" style="width:30px">T</div><div vertical-align="top"><div class="name">' + obj.entity_name
+                        onsItem.innerHTML = '<div class="left" style="width:130px"><img src="' + image + '" class="avator"></img></div><div vertical-align="top"><div class="name">' + obj.entity_name
                             + '</div><span class="list__item__subtitle"><div class="location">' + obj.address3 + ',' + obj.town + '</div></br><i class="fa fa-map-marker"></i> ' + Math.round(obj.distance * 100) / 100 + ' miles</div>';
                         document.getElementById('entity_list').appendChild(onsItem);
                         //addCustomMarker(obj.id, page.data.mapType, obj.entity_name, obj.latitude, obj.longitude);
@@ -184,6 +184,13 @@
         var end = document.getElementById('end').value;
         
     }
+
+    function truncate(string) {
+        if (string.length > 15)
+            return string.substring(0, 15) + '...';
+        else
+            return string;
+    };
 
     function initDetail(entityId) {
         $.ajax(
@@ -476,8 +483,12 @@
     };
 
     window.fn.showVal = function (target) {
+        $(".rangeView").html(target + " Miles");
+    };
+    window.fn.showConVal = function (target) {
         $("#rangeView").html(target + " Miles");
     };
+
 
     window.fn.hidePopover = function () {
         document
@@ -507,7 +518,7 @@
                     data: {
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude,
-                        distance: $("#mapRange").val(),
+                        distance: $("#mapRangeEntity").val(),
                         type: 1,
                         entityType: window.mapType
                     },
@@ -612,14 +623,14 @@
             $("#entity_list").html("<ons-list-header>Found Locations</ons-list-header>");
             $("#entityProgress").show();
                 $.ajax({
-                    url: 'http://stage.theclaymoreproject.com/api/partner/1238?action=concierge_search',
+                    url: 'http://stage.theclaymoreproject.com/api/partner/' + localStorage.getItem('conciergeId') + '?action=app_search',
                     type: 'post',
                     dataType: 'json',
                     crossOrigin: true,
                     data: {
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude,
-                        distance: $("#mapRange").val(),
+                        distance: $("#mapRangeEntity").val(),
                         type: 1,
                         entityType: window.mapType
                     },
@@ -629,6 +640,9 @@
                     success: function (data) {
                         var count = 0;                        
                         $("#entityProgress").hide();
+                        $("#locationCount").html(data.length);
+                        $("#offerCount").html("0");
+                        $("#distanceDiv").html($("#mapRangeEntity").val() + ' miles');
                         $.each(data, function (i, obj) {
                             //set profile image
                             var image = ""
@@ -642,13 +656,13 @@
                             onsItem.setAttribute('modifier', "chevron");
                             onsItem.setAttribute('tappable', "");
                             onsItem.setAttribute('onclick', "fn.loadDetail('entity.html'," + obj.id + ")");
-                            onsItem.innerHTML = '<div class="left" style="width:130px"><img src="' + image + '" class="avator"></img></div><div class="right" style="width:30px">T</div><div vertical-align="top" ><div class="name">' + obj.entity_name
+                            onsItem.innerHTML = '<div class="left" style="width:130px"><img src="' + image + '" class="avator"></img></div><div vertical-align="top" ><div class="name">' + obj.entity_name
                             + '</div><span class="list__item__subtitle"><div class="location">' + obj.address + ',' + obj.town + '</div> </br><i class="fa fa-map-marker"></i> ' + Math.round(obj.distance * 100) / 100 + ' miles</div>';
                             document.getElementById('entity_list').appendChild(onsItem);
                             //addCustomMarker(obj.id, window.mapType, obj.entity_name, obj.latitude, obj.longitude);
                             $("#locationCount").html(i + 1);
                             $("#offerCount").html("0");
-                            $("#distanceDiv").html($("#mapRange").val() + ' miles');
+                            $("#distanceDiv").html($("#mapRangeEntity").val() + ' miles');
                         });
                         //ons.compile(onsList)
                     },
@@ -705,17 +719,22 @@
         //  .then(menu.close.bind(menu));        
     };
 
+     window.fn.expandDetail = function () {
+        $("#detailDesc").height('auto');
+        $('#moreDetail').hide();
+    }
+
     window.fn.loadmap = function (page,mapType) {
         //var content = document.getElementById('content');
         var menu = document.getElementById('menu');
         var navi = document.getElementById('navi');
         var title = "";
         var color;
-        if (mapType == 1) {
+        if (mapType == 2) {
             title = 'Accomodation';
             color = "red";
         }
-        if (mapType == 2) {
+        if (mapType == 1) {
             title = 'Attractions';
             color = "orange";
         }
