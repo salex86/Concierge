@@ -333,7 +333,7 @@
 
                     $("#detailCard").css("background", "linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 100%),url(" + image + ") no-repeat center center #eae7de");
                     $("#detailCard").css("background-repeat", "no-repeat");
-                    $("#detailCard").css("background-size", "100% 85%");
+                    $("#detailCard").css("background-size", "100% 100%");
                     $("#detailCard").css("background-position", "bottom center");
                     //linear-gradient(to bottom, rgba(255,255,255, 0) 0%, rgba(0,0,0, 1) 100%),
                     //url(...);
