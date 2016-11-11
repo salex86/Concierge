@@ -120,7 +120,7 @@
             $("#entityProgress").show();
             
             $.ajax({
-                url: 'http://stage.theclaymoreproject.com/api/partner/' + entityId + '?action=app_search',
+                url: 'http://stage.theclaymoreproject.com/api/partner/' + entityId + '?action=app_concierge_search',
                 type: 'post',
                 dataType: 'json',
                 crossOrigin: true,
@@ -511,7 +511,7 @@
 
             google.maps.event.addListenerOnce(map, 'idle', function () {
                 $.ajax({
-                    url: 'http://stage.theclaymoreproject.com/api/partner/'+entityId+'?action=app_search',
+                    url: 'http://stage.theclaymoreproject.com/api/partner/'+entityId+'?action=app_concierge_search',
                     type: 'post',
                     dataType: 'json',
                     crossOrigin: true,
@@ -623,7 +623,7 @@
             $("#entity_list").html("<ons-list-header>Found Locations</ons-list-header>");
             $("#entityProgress").show();
                 $.ajax({
-                    url: 'http://stage.theclaymoreproject.com/api/partner/' + localStorage.getItem('conciergeId') + '?action=app_search',
+                    url: 'http://stage.theclaymoreproject.com/api/partner/' + localStorage.getItem('conciergeId') + '?action=app_concierge_search',
                     type: 'post',
                     dataType: 'json',
                     crossOrigin: true,
